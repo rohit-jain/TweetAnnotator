@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Twitter Classifier</title>
+    <%= csrf_meta_tag %>
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->    
+    <%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %>
+    <%= stylesheet_link_tag 'blueprint/print',  :media => 'print' %>
+    <!--[if lt IE 8]><%= stylesheet_link_tag 'blueprint/ie' %><![endif]-->
+    <%= stylesheet_link_tag 'custom', :media => 'screen' %>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <%= image_tag("logo.png", :size => "50x30", :alt => "Twitter  Classifier", :class => "round" ) %>
+        <nav class="round">
+          <ul>
+            <li><%= link_to "Home", '/' %></li>
+            <li>  <% if current_user %>   <%=  link_to('Sign out', '/signout') %>
+                  <% else %>    <%= link_to "Sign in with Twitter", "/auth/twitter" %>  
+ 	          <% end %> 
+	    </li>
+          </ul>
+        </nav>
+      </header>
+      <section class="round">
+        <%= yield %>
+         <div id="user_nav">
+        
+      
+    </div>
+      </section>
+    </div>
+  </body>
+</html>
+

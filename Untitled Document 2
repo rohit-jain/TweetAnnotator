@@ -1,0 +1,6 @@
+Twitter.configure do |config|
+      config.consumer_key = "AEmV4waNSUSYpPIFHvpR2g"
+      config.consumer_secret = "mQ4Z95q2fQraZCijrbFzX7GhZlZH7khunc6cnyzSf8"
+      config.oauth_token = "177630113-G5BIymjmIKPpiqcA6ASq4cVtxii5lpImDZzYXCbz"
+      config.oauth_token_secret = "TZjQt2hFcArrtOcugDE1PfBBwi3VipZ0x8YS4dCqg"
+    end
