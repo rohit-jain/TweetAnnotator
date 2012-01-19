@@ -19,10 +19,10 @@ var backgroundImage = new Image();
 backgroundImage.src="../../assets/grid.png";
 
 var shootingObject = new Image();
-shootingObject.src="../../assets/Tank.gif"
+shootingObject.src="../../assets/starship.png"
 
 var bulletImg = new Image();
-bulletImg.src="../../assets/bullet.png";
+bulletImg.src="../../assets/torpedo.png";
 
 var tweetInCloud = new Array();
 var cloudShiftY1=0;
@@ -146,7 +146,7 @@ function drawScene()
 {
         ctx.drawImage(backgroundImage, 0, 0, 800,500,0,0, ctx.canvas.width, ctx.canvas.height);
         ctx.globalAlpha = 1;
-	ctx.drawImage(shootingObject, 0, 0, 45,48 ,ctx.canvas.width/2-20, ctx.canvas.height-80,45,48);
+	ctx.drawImage(shootingObject, 0, 0, 463,470 ,ctx.canvas.width/2-20, ctx.canvas.height-80,46,47);
 	//try{
 	tweetFall();
 	//}
@@ -218,7 +218,7 @@ var tintin=(tweetInCloud[curTwInd].tweetId);
 
 for(var j=initNbullet;j<tempLength;j++)
 {
-	ctx.drawImage(bulletImg, 0, 0, 300,300 ,bulletArray[j].x,bulletArray[j].y,15,15);
+	ctx.drawImage(bulletImg, 0, 0, 172,225 ,bulletArray[j].x,bulletArray[j].y,17,22);
 	bulletArray[j].y+=bulletArray[j].yinc;
 	bulletArray[j].x+=bulletArray[j].xinc;
 
