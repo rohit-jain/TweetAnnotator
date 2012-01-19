@@ -17,48 +17,6 @@ ActiveRecord::Schema.define(:version => 20120119110715) do
     t.string "text", :limit => 140
   end
 
-  create_table "bachaos", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "humen", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "listings", :force => true do |t|
-    t.string   "address"
-    t.integer  "rent"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.integer  "capacity"
-    t.string   "description"
-    t.integer  "rooms"
-    t.integer  "intcount"
-    t.boolean  "gmaps"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "u_id"
-  end
-
-  create_table "micros", :force => true do |t|
-    t.integer  "human_id"
-    t.integer  "list_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "micros", ["human_id", "created_at"], :name => "index_micros_on_human_id_and_created_at"
-
-  create_table "posts", :force => true do |t|
-    t.string   "name"
-    t.string   "title"
-    t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "saved_tweets", :force => true do |t|
     t.datetime "created_at"
@@ -85,10 +43,7 @@ ActiveRecord::Schema.define(:version => 20120119110715) do
     t.datetime "updated_at"
   end
 
-  create_table "tweet_densities", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+
 
   create_table "tweet_saveds", :force => true do |t|
     t.string   "uid"
