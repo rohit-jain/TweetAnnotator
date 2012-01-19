@@ -51,9 +51,13 @@ class SessionsController < ApplicationController
   end
   
   def putToken
-    @a=(TokenTweet.where(:tweetId=>params[:tweetId]).first)
-    @a[:category]=params[:cat]
-    @a.save
+   @a=(TokenTweet.where(:tweetId=>params[:tweetId]).first)
+   @b=Tweeple.where(:id=>session[:tweeple_id]).first
+   @a[:category]=params[:cat]
+   @a.save
+   @c=VoteRecord.new(:tweeple_id=>@b[:id],:token_tweet_id=>@a[:id],:vote=>params[:cat])
+   @c.save  
+   @a.save
     render :json=>@a
   end
 end

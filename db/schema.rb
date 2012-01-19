@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120104195441) do
+ActiveRecord::Schema.define(:version => 20120119110715) do
 
   create_table "TWEET", :id => false, :force => true do |t|
     t.string "text", :limit => 140
@@ -52,6 +52,14 @@ ActiveRecord::Schema.define(:version => 20120104195441) do
 
   add_index "micros", ["human_id", "created_at"], :name => "index_micros_on_human_id_and_created_at"
 
+  create_table "posts", :force => true do |t|
+    t.string   "name"
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "saved_tweets", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -73,6 +81,11 @@ ActiveRecord::Schema.define(:version => 20120104195441) do
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tweet_densities", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -105,5 +118,16 @@ ActiveRecord::Schema.define(:version => 20120104195441) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "vote_records", :force => true do |t|
+    t.integer  "vote"
+    t.integer  "tweeple_id"
+    t.integer  "token_tweet_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "vote_records", ["token_tweet_id"], :name => "index_vote_records_on_token_tweet_id"
+  add_index "vote_records", ["tweeple_id"], :name => "index_vote_records_on_tweeple_id"
 
 end
