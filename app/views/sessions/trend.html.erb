@@ -1,7 +1,4 @@
-<html>
-	<head>
-		<style type='text/css'>
-		</style>
+
 		<script type="text/javascript">
 			var BAR_HEIGHT=50;
 			var topOffset=50;
@@ -14,7 +11,10 @@
 
 			var backgroundImage = new Image();
 			backgroundImage.src="../../assets/space.jpg";
-
+            var collidesound = new Audio("../../assets/explodemini.ogg");
+            
+            
+            
 			var shootingObject = new Image();
 			shootingObject.src="../../assets/starship.png"
 
@@ -34,6 +34,9 @@
 			var curTarInd=0;
 			var tarTwInd=-1;
 			var tarToken=0;
+			var rotDir=0;
+			var destroyIndex1=0;
+			var destroyIndex2=0;
 			bulletArray = new Array();
 
 			activeColor = new Color(255,255,255);
@@ -95,6 +98,7 @@
 						if(kCode == t1[0]) {
 							targetToken = t1;
 							tarToken = 0;
+							rotDir=-1;
 							bulletArray.push(new Bullet(ctx.canvas.width / 2 - 3, ctx.canvas.height - 95, t1X, t1Y, kCode, curTwInd, 0, tarToken));
 							curTarInd++;
 							nbullets++;
@@ -102,6 +106,7 @@
 						} else if((kCode == t2[0])) {
 							targetToken = t2;
 							tarToken = 1;
+							rotDir=1;
 							bulletArray.push(new Bullet(ctx.canvas.width / 2 - 3, ctx.canvas.height - 95, t2X, t2Y, kCode, curTwInd, 0, tarToken));
 							curTarInd++;
 							nbullets++;
@@ -130,9 +135,20 @@
 			}
 
 			function drawScene() {
-				ctx.drawImage(backgroundImage, 250, 0, 600, 400, 0, 0, ctx.canvas.width, ctx.canvas.height);
+				ctx.drawImage(backgroundImage, 0, 0, 1920, 1024, 0, 0, ctx.canvas.width, ctx.canvas.height);
 				ctx.globalAlpha = 1;
-				ctx.drawImage(shootingObject, 0, 0, 463, 470, ctx.canvas.width / 2 - 20, ctx.canvas.height - 80, 46, 47);
+				
+				ctx.save();
+				
+				
+                 ctx.translate(ctx.canvas.width/2- 23, ctx.canvas.height-80);
+    			// rotate 45 degrees clockwise
+  		  		ctx.rotate(rotDir*Math.PI / 10);
+  		  		//ctx.translate(0,0);
+				ctx.drawImage(shootingObject, 0, 0, 463, 470, 0, 0, 46, 47);
+                ctx.restore(); 
+				
+
 				clear();
 				tweetFall();
 				window.addEventListener('keydown', hitToken, false);
@@ -163,9 +179,13 @@
 				var cldShiftX = cloudShiftX1;
 
 				var tintin = (tweetInCloud[curTwInd].tweetId);
-
+                
 				for(var j = initNbullet; j < tempLength; j++) {
-					ctx.drawImage(bulletImg, 0, 0, 172, 225, bulletArray[j].x, bulletArray[j].y, 17, 22);
+					ctx.save();
+					ctx.translate(bulletArray[j].x, bulletArray[j].y);
+					ctx.rotate((rotDir*Math.PI)/10);
+					ctx.drawImage(bulletImg, 0, 0, 172, 225, 0,0, 17, 22);
+					ctx.restore();
 					bulletArray[j].y += bulletArray[j].yinc;
 					bulletArray[j].x += bulletArray[j].xinc;
 
@@ -183,7 +203,14 @@
 
 					if(bulletArray[j].tInd == curTwInd)
 						if(((bulletArray[j].y <= (toY + cldShiftY + 5)) && (bulletArray[j].y >= (toY + cldShiftY - 5))) || ((bulletArray[j].x <= (toX + cldShiftX + 5)) && (bulletArray[j].x >= (toX + cldShiftX - 5))))// To-Do Add code for collision Detection
-						{
+						{ 
+						  
+							if(bulletArray[j].toId == 0) {
+								destroyIndex1=destroyIndex1+1;
+						
+					} else if(bulletArray[j].toId == 1) {
+						destroyIndex2=destroyIndex2+1;
+					}
 							var ko = tweetInCloud.length;
 							tempflag = 1;
 							tempInd = (curTwInd);
@@ -202,10 +229,13 @@
 									targetToken = "";
 									curTarInd = 0;
 									tarTwInd = -1;
+									rotDir=0;
 									cloudShiftY1 = 0;
 									cloudShiftX1 = 0;
 									cloudShiftY2 = 0;
 									cloudShiftX2 = 0;
+									destroyIndex1=0;
+									destroyIndex2=0;
 									if(curTwInd >= ko - 1) {
 										curTwInd = 0;
 									}
@@ -222,6 +252,8 @@
 			}
 
 			function Bullet(x, y, targetX, targetY, key, tInd, fin, toId) {
+				collidesound.src=collidesound.src;
+				collidesound.play();
 				this.x = x;
 				this.y = y;
 				this.targetX = targetX;
@@ -293,6 +325,8 @@
 				var yinc1 = tweetInCloud[curTwInd].yinc1;
 				var xinc2 = tweetInCloud[curTwInd].xinc2;
 				var yinc2 = tweetInCloud[curTwInd].yinc2;
+				var dT1=(tweetInCloud[curTwInd].token1).slice(destroyIndex1);
+				var dT2=(tweetInCloud[curTwInd].token2).slice(destroyIndex2);
 				var a = 0;
 				
 				twt.font = "15pt Calibri";
@@ -301,8 +335,8 @@
 				//twt.fillText(tweetInCloud[curTwInd].tweetTxt, tX-20, tY+20)
 				//clearColor();
 				ctx.fillStyle = "White";
-				ctx.fillText(tweetInCloud[curTwInd].token1, t1X + cloudShiftX1, t1Y + cloudShiftY1)
-				ctx.fillText(tweetInCloud[curTwInd].token2, t2X + cloudShiftX2, t2Y + cloudShiftY2)
+				ctx.fillText(dT1, t1X + cloudShiftX1, t1Y + cloudShiftY1)
+				ctx.fillText(dT2, t2X + cloudShiftX2, t2Y + cloudShiftY2)
 
 				//Update Tweet Position
 				cloudShiftY1 += yinc1;
@@ -319,6 +353,9 @@
 					curTarInd = 0;
 					targetToken = "";
 					tarTwInd = -1;
+					rotDir=0;
+					destroyIndex1=0;
+					destroyIndex2=0;
 					a = tweetInCloud.length;
 					if(curTwInd >= a) {
 						curTwInd = 0;
@@ -366,15 +403,8 @@
 						document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
 					}
 				}
-				try {
-
-					xmlhttp.open("GET", "/pt?tweetId=" + String(tweetId) + "&cat=" + String(cat), true);
-					//console.log("here");
-				} catch(err) {
-					alert(err);
-				}
-
-				xmlhttp.send();
+				xmlhttp.open("GET", "/pt?tweetId=" + String(tweetId) + "&cat=" + String(cat), true);
+			    xmlhttp.send();
 			}
 		</script>
 	</head>
