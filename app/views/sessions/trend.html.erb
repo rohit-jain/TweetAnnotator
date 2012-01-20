@@ -362,9 +362,9 @@
 				ctx.font = "10pt Calibri"	;			
 				ctx.fillText(dT1, t1X + cloudShiftX1, t1Y + cloudShiftY1);
 				var b=91*astInd
-				ctx.drawImage(asteroidImg, 0, b, 109, 91, t1X + cloudShiftX1, t1Y + cloudShiftY1, 20, 18);
+				ctx.drawImage(asteroidImg, 0, b, 109, 91, t1X + cloudShiftX1, t1Y + cloudShiftY1, 30, 28);
 				ctx.fillText(dT2, t2X + cloudShiftX2, t2Y + cloudShiftY2);
-				ctx.drawImage(asteroidImg, 0, b, 109, 91, t2X + cloudShiftX2, t2Y + cloudShiftY2, 20, 18);
+				ctx.drawImage(asteroidImg, 0, b, 109, 91, t2X + cloudShiftX2, t2Y + cloudShiftY2, 30, 28);
 				
 				
 				cat.font = "15pt Calibri";    
@@ -504,7 +504,7 @@
 				con.clearRect(0,0,WIDTH,HEIGHT);
 				for(var i = 0; i < pxs.length; i++) {
 					pxs[i].fade();
-					pxs[i].move();
+					//pxs[i].move();
 					pxs[i].draw();
 				}
 			}
