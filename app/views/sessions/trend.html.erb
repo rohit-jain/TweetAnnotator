@@ -15,7 +15,8 @@
 			backgroundImage.src="../../assets/space.jpg";
       var collidesound = new Audio("../../assets/explodemini.ogg");
             
-            
+            var asteroidImg = new Image();
+            asteroidImg.src="../../assets/asteroid.png";
             
 			var shootingObject = new Image();
 			shootingObject.src="../../assets/starship.png"
@@ -39,6 +40,7 @@
 			var rotDir=0;
 			var destroyIndex1=0;
 			var destroyIndex2=0;
+			var astInd=0;
 			bulletArray = new Array();
 			
 			var WIDTH=500;
@@ -359,7 +361,11 @@
 				ctx.fillStyle = "White";
 				ctx.font = "10pt Calibri"	;			
 				ctx.fillText(dT1, t1X + cloudShiftX1, t1Y + cloudShiftY1);
+				var b=91*astInd
+				ctx.drawImage(asteroidImg, 0, b, 109, 91, t1X + cloudShiftX1, t1Y + cloudShiftY1, 20, 18);
 				ctx.fillText(dT2, t2X + cloudShiftX2, t2Y + cloudShiftY2);
+				ctx.drawImage(asteroidImg, 0, b, 109, 91, t2X + cloudShiftX2, t2Y + cloudShiftY2, 20, 18);
+				
 				
 				cat.font = "15pt Calibri";    
 				cat.textAlign = "center";
@@ -377,6 +383,9 @@
 				cloudShiftX1 += xinc1;
 				cloudShiftY2 += yinc2;
 				cloudShiftX2 += xinc2;
+				astInd+=1;
+				if(astInd==30)
+				astInd=0;
 
 				if((cloudShiftY1 >= ctx.canvas.height-100) || (cloudShiftX1 >= ctx.canvas.height-100)) {
 					cloudShiftY1 = 0;
