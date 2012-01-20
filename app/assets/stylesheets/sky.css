@@ -1,10 +1,32 @@
+html
+{
+    overflow: hidden;
+}
+
 #container {
     overflow:hidden;
     position:relative;
 }
 #sky {
     z-index:0;
+    overflow: hidden;
+    margin:0px;
     width: 500px;
     height: 500px;
-    background-image:url('../../assets/space.jpg');    
+    background-image:url('../../assets/universe_rev.png');    
+    background-color:#000;
+    background-position: 0px;
+    background-repeat: repeat;
+    -moz-animation: dayByDay 10s linear 0s infinite;
+    -webkit-animation: dayByDay 10s linear 0s infinite;
+}
+@-moz-keyframes dayByDay
+{
+    from{background-position: 50% 0%;}
+  	to{background-position: 50% 50%;}
+}
+@-webkit-keyframes dayByDay
+{
+    from{background-position: 50% 100%;}
+    to{background-position: 50% -100%;}
 }
