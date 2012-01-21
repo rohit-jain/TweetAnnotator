@@ -1,0 +1,9 @@
+<%= form_tag('/save_tweet', :action => "create")  %>
+
+<% @trend.each do |key|%>
+<li>
+	<%= check_box_tag("tweets_id[]",key.id)%>
+	<%= key.text %>
+<% end %>
+
+<%= submit_tag("Save Tweet")%>

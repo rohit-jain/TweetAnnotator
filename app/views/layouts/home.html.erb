@@ -1,23 +1,33 @@
-
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Twitter Classifier</title>
-    <%= csrf_meta_tag %>
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->    
-   <%= stylesheet_link_tag    "application" %>
-   <%= javascript_include_tag "application" %>
-      <style type="text/css">
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Tweet Annotation Game | IIIT- D PreCog</title>
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <!-- Le styles -->
+        <%= stylesheet_link_tag    "bootstrap.min" %>
+        <%= stylesheet_link_tag    "application" %>
+        <%= javascript_include_tag "application" %>
+        <%= javascript_include_tag "bootstrap-scrollspy" %>
+        <%= javascript_include_tag "bootstrap-buttons" %>
+        <%= csrf_meta_tags %>    
+        <style type="text/css">
             body {
             padding-top: 60px;
             }
         </style>
-        
-  </head>
-  <body>
-    <div class="topbar" data-scrollspy="scrollspy">
+        <!-- Le fav and touch icons -->
+        <%= favicon_link_tag 'favicon.ico' %>
+
+    </head>
+    <body >
+    	
+        <div class="topbar" data-scrollspy="scrollspy">
             <div class="fill">
                 <div class="container">
                     <a class="brand" href="#">Tweet Annotation</a>
@@ -80,10 +90,5 @@
             </footer>
         </div>
         <!-- /container -->
-       
-       
-    </div>
-      </section>
-    </div>
-  </body>
+    </body>
 </html>
