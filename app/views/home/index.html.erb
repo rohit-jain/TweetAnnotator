@@ -1,35 +1,40 @@
-
-<% if current_user %>
-<%= image_tag(@user.profile_image_url).html_safe %>
- <h3>    Welcome <%= link_to(@user.name, @user.url) %>  </h3>
+   <%= notice%>
+   <h2>Hey!</h2>
+    <% if current_user %>
+    <%= image_tag(@user.profile_image_url).html_safe %>
+  <h3>    Welcome <%= link_to(@user.name, @user.url) %>  </h3>
   <table>
-<% unless @user.location.blank? %>  <tr>
- <th>Location </th>
- <td><%= @user.location %> </td>
+    <% unless @user.location.blank? %>  <tr>
+      <th>        Location      </th>
+      <td>        <%= @user.location %>      </td>
     </tr>
     <% end %>
-    <tr>
-    <th> Friends</th>
- <td>  <%= @user.friends_count %> </td>
+    <tr>     
+    <th> Friends      </th>
+      <td>        <%= @user.friends_count %>      </td>
     </tr>
-<tr> 
-    <th>Followers </th>
- <td>   <%= @user.followers_count %> </td>
+    <tr>      
+    <th>        Followers      </th>
+      <td>        <%= @user.followers_count %>      </td>
     </tr>
   </table>
   <% unless @user.status.blank? %>
   <p>
     <%= "#{time_ago_in_words(@user.status.created_at).capitalize} ago, you said:" %>
     <q>
- <strong> <%= @user.status.text %></strong>
+      <%= @user.status.text %>
     </q>
-    
   </p>
   <% end %>
-  
-
+  <% client.trends().each do |key| %>
+  <li>
+  	<% if /^\#/ =~key %>
+  	<%= link_to(key, "/trend/#{key[1..-1]}")%>
+  	<% else %>
+  	<%= link_to(key,"/trend/#{key}")%>
+  	<%end%>
+  <% end %>
   
 <% else %>
- <h3>    Welcome Guest!  </h3>
     <%= link_to "Please in with Twitter", "/auth/twitter" %>  
   <% end %>

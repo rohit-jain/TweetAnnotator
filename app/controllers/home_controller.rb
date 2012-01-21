@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-layout "home"
+#layout "home"
   def index
   	  if signed_in?
   	  	  # singed_in function is defined inside Application Controller 

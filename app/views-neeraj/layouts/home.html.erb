@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Tweet Annotation Game | IIIT- D PreCog</title>
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <!-- Le styles -->
+        <%= stylesheet_link_tag    "bootstrap.min" %>
+        <%= stylesheet_link_tag    "application" %>
+        <%= javascript_include_tag "application" %>
+        <%= javascript_include_tag "bootstrap-scrollspy" %>
+        <%= javascript_include_tag "bootstrap-buttons" %>
+        <%= csrf_meta_tags %>    
+        <style type="text/css">
+            body {
+            padding-top: 60px;
+            }
+        </style>
+        <!-- Le fav and touch icons -->
+        <%= favicon_link_tag 'favicon.ico' %>
+
+    </head>
+    <body >
+    	
+        <div class="topbar" data-scrollspy="scrollspy">
+            <div class="fill">
+                <div class="container">
+                    <a class="brand" href="#">Tweet Annotation</a>
+                    <ul class="nav">
+                        <li><a href="#home"> Home </a></li>
+                        <li><a href="#instructions"> Instructions</a></li>
+                        <li><a href="#team"> Team </a></li>
+                        <li>  <% if current_user %>   <%=  link_to('Sign out', '/signout') %>
+                            <% else %>    <%= link_to "Sign in with Twitter", "/auth/twitter" %>  
+                            <% end %> 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <!-- Main hero unit for a primary marketing message or call to action -->
+            <div id="home">
+                <p><a class="btn info ">Home</a></p>
+                <h3>Tweet Annotation using Game</h3>
+                <%= yield %>
+            </div>
+            
+            <!-- Example row of columns -->
+            <br />
+            <br />
+            <div id="instructions" class="hero-unit">
+                <p><a class="btn primary ">Instruction</a></p>
+                <ul>
+                    <li>With each tweet you will be shown two words, one at left and another at right</li>
+                    <li> At present you will need to specify whether the tweet content is spam/not spam where the criteria for 
+                        spam is that the tweet should be related to the hashtag with which it is associated
+                    </li>
+                    <li> </li>
+                    <li> </li>
+                </ul>
+            </div>
+            <div id="team">
+                <p><a class="btn info ">Team</a> </p>
+                <div class="row">
+                    <div class="span-one-third">
+                        <address> <h3>Neeraj Gupta</h3> <br />
+                            <strong>neeraj.gupta983@gmail.com </strong>
+                        </address>
+                    </div>
+                    <div class="span-one-third">
+                        <address> <h3>Rohit Jain</h3>  <br />
+                            <strong> rohitjain.nsit@gmail.com</strong>
+                        </address>
+                    </div>
+                    <div class="span-one-third">
+                        <address> <h3>Shashank Nayak</h3><br />
+                            <strong>link4shashank@gmail.com </strong>
+                        </address>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <p>&copy; PreCog IIIT Delhi</p>
+            </footer>
+        </div>
+        <!-- /container -->
+    </body>
+</html>
