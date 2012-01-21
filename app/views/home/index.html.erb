@@ -26,14 +26,7 @@
     
   </p>
   <% end %>
-  <% client.trends().each do |key| %>
-  <li>
-  	<% if /^\#/ =~key %>
-  	<%= link_to(key, "/trend/#{key[1..-1]}")%>
-  	<% else %>
-  	<%= link_to(key,"/trend/#{key}")%>
-  	<%end%>
-  <% end %>
+  
 
   
 <% else %>
