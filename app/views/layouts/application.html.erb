@@ -1,89 +1,67 @@
-
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Twitter Classifier</title>
-    <%= csrf_meta_tag %>
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->    
-   <%= stylesheet_link_tag    "application" %>
-   <%= javascript_include_tag "application" %>
-      <style type="text/css">
-            body {
-            padding-top: 60px;
-            }
-        </style>
-        
-  </head>
-  <body>
-    <div class="topbar" data-scrollspy="scrollspy">
-            <div class="fill">
-                <div class="container">
-                    <a class="brand" href="#">Tweet Annotation</a>
-                    <ul class="nav">
-                        <li><a href="#home"> Home </a></li>
-                        <li><a href="#instructions"> Instructions</a></li>
-                        <li><a href="#team"> Team </a></li>
-                        <li>  <% if current_user %>   <%=  link_to('Sign out', '/signout') %>
-                            <% else %>    <%= link_to "Sign in with Twitter", "/auth/twitter" %>  
-                            <% end %> 
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <!-- Main hero unit for a primary marketing message or call to action -->
-            <div id="home">
-                <p><a class="btn info ">Home</a></p>
-                <h3>Tweet Annotation using Game</h3>
-                <%= yield %>
-            </div>
-            
-            <!-- Example row of columns -->
-            <br />
-            <br />
-            <div id="instructions" class="hero-unit">
-                <p><a class="btn primary ">Instruction</a></p>
-                <ul>
-                    <li>With each tweet you will be shown two words, one at left and another at right</li>
-                    <li> At present you will need to specify whether the tweet content is spam/not spam where the criteria for 
-                        spam is that the tweet should be related to the hashtag with which it is associated
-                    </li>
-                    <li> </li>
-                    <li> </li>
-                </ul>
-            </div>
-            <div id="team">
-                <p><a class="btn info ">Team</a> </p>
-                <div class="row">
-                    <div class="span-one-third">
-                        <address> <h3>Neeraj Gupta</h3> <br />
-                            <strong>neeraj.gupta983@gmail.com </strong>
-                        </address>
-                    </div>
-                    <div class="span-one-third">
-                        <address> <h3>Rohit Jain</h3>  <br />
-                            <strong> rohitjain.nsit@gmail.com</strong>
-                        </address>
-                    </div>
-                    <div class="span-one-third">
-                        <address> <h3>Shashank Nayak</h3><br />
-                            <strong>link4shashank@gmail.com </strong>
-                        </address>
-                    </div>
-                </div>
-            </div>
-            <footer>
-                <p>&copy; PreCog IIIT Delhi</p>
-            </footer>
-        </div>
-        <!-- /container -->
-       
-       
-    </div>
-      </section>
-    </div>
-  </body>
+	<head>
+		<title>Twitter Classifier</title>
+		<%= csrf_meta_tag %> <!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %>
+		<%= stylesheet_link_tag 'blueprint/print',  :media => 'print' %> <!--[if lt IE 8]><%= stylesheet_link_tag 'blueprint/ie' %><![endif]-->
+		<%= stylesheet_link_tag 'custom', :media => 'screen' %>
+		<%= javascript_include_tag 'jquery-1.6.4.min.js'%>
+	</head>
+	<body>
+		<script type="text/javascript">
+			$(document).ready(function(){
+			$("#showSimpleModal").click(function() {
+			$("div#simpleModal").addClass("show");
+			return false;
+			});
+			$("#closeSimple").click(function() {
+			$("div#simpleModal").removeClass("show");
+			return false;
+			});
+			});
+		</script>
+		<div class="container">
+			<header>
+				<a href="" id="showSimpleModal" class="super green button">
+					<span>About</span>
+				</a>
+				<nav class="round">
+					<ul>
+						<li>
+							<a href="/" id="showSimpleModal" class="super green button">
+								<span>Home</span>
+							</a>
+						</li>
+						<li>
+							<a href="/play" id="showSimpleModal" class="super green button">
+								<span>Play</span>
+							</a>
+						</li>
+						<li>
+							<% if current_user %>   
+							<a href="/signout" id="showSimpleModal" class="super green button">
+								<span>Logout</span>
+							</a>
+							<% else %>  
+							<a href="/auth/twitter" id="showSimpleModal" class="super green button">
+								<span>Sign in</span>
+							</a>  
+							<% end %>
+						</li>
+					</ul>
+				</nav>
+			</header>
+			<section class="round">
+				<%= yield %>
+			</section>
+		</div>
+		<div id="simpleModal" class="modal">
+			<h3>What am i playing.</h3>
+			<p>This is an academic project.</p>					
+			<a href="" class="super green button" id="closeSimple"><span>OK</span></a>
+		</div>
+	</body>
 </html>

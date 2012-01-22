@@ -1,0 +1,29 @@
+@Shashank
+1.rails generate model VoteRecord vote:integer tweeple:references token_tweet:references
+
+2.Then add
+"has_many :vote_records"
+to files token_tweet.rb and tweeple.rb
+
+3. rails generate migration add_votes_to_tweeples vote:integer
+4. rails generate migration add_voteCat1_to_token_tweet voteCat1:integer
+5. rails generate migration add_voteCat2_to_token_tweet voteCat2:integer
+6. rake db:migrate
+7. change the outToken function in sessions controller
+def putToken
+   @a=(TokenTweet.where(:tweetId=>params[:tweetId]).first)
+   @b=Tweeple.where(:id=>session[:tweeple_id]).first
+   @c=VoteRecord.new(:tweeple_id=>@b[:id],:token_tweet_id=>@a[:id],:vote=>params[:cat])
+   @b[:vote]=@b[:vote]+1;
+   @b.save
+   @a[:category]=params[:cat]
+   if(params[:cat]==0)
+     @a[:voteCat1]=@a[:voteCat1]+1;
+   else
+     @a[:voteCat2]=@a[:voteCat2]+1;
+   end
+   @a.save
+   @c.save  
+   
+    render :json=>@a
+  end

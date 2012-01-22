@@ -11,14 +11,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120119110715) do
+ActiveRecord::Schema.define(:version => 20120122084901) do
 
-  create_table "TWEET", :id => false, :force => true do |t|
-    t.string "text", :limit => 140
+  create_table "feedbacks", :force => true do |t|
+    t.integer  "tweeple_id"
+    t.string   "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
+  add_index "feedbacks", ["tweeple_id"], :name => "index_feedbacks_on_tweeple_id"
 
   create_table "saved_tweets", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "seed_tweets", :force => true do |t|
+    t.string   "tweetId"
+    t.integer  "token1Id"
+    t.integer  "token2Id"
+    t.integer  "category"
+    t.string   "tweetText"
+    t.string   "tweetToken1"
+    t.string   "tweetToken2"
+    t.integer  "voteCat1"
+    t.integer  "voteCat2"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -33,6 +51,9 @@ ActiveRecord::Schema.define(:version => 20120119110715) do
     t.string   "tweetToken2"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "voteCat1",    :default => 0
+    t.integer  "voteCat2",    :default => 0
+    t.boolean  "done",        :default => false
   end
 
   create_table "tweeples", :force => true do |t|
@@ -41,22 +62,11 @@ ActiveRecord::Schema.define(:version => 20120119110715) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "vote"
   end
-
-
 
   create_table "tweet_saveds", :force => true do |t|
     t.string   "uid"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "users", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "contact"
-    t.string   "password_hash"
-    t.string   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

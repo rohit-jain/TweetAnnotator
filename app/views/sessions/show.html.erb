@@ -39,6 +39,10 @@
     </q>
   </p>
   <% end %>
+  <a href="/play" id="showSimpleModal" class="super green button">
+		<span>About</span>
+	</a>
+	<br />
   <% client.trends().each do |key| %>
   <li>
   	<% if /^\#/ =~key %>

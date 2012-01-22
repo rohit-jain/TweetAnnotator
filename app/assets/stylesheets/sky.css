@@ -1,13 +1,34 @@
 html
 {
-    overflow: hidden;
+    overflow: auto;
 }
 
 #container {
-    overflow:hidden;
+		float: left;
+		width:64%;
+    overflow:auto;
     position:relative;
 }
-#sky {
+
+#tweet{
+	width: 500px;
+	border: outset;
+	border-color: gray;
+}
+
+#display {
+	float: left;
+	width: 35%;
+	height: 500px;
+	border: outset;
+	border-color: gray;
+}
+/*
+#score{
+	border: outset;
+	border-color: gray;
+}*/
+#sky {	
     z-index:0;
     overflow: hidden;
     margin:0px;
@@ -15,15 +36,17 @@ html
     height: 500px;
     background-image:url('../../assets/universe_rev.png');    
     background-color:#000;
-    background-position: 0px;
-    background-repeat: repeat;
-    -moz-animation: dayByDay 10s linear 0s infinite;
-    -webkit-animation: dayByDay 10s linear 0s infinite;
+	  background-position: 0px;
+	  background-repeat: repeat;
+	  border: outset;
+		border-color: gray;
+	  -moz-animation: dayByDay 50s linear 0s infinite;
+    -webkit-animation: dayByDay 50s linear 0s infinite;
 }
 @-moz-keyframes dayByDay
 {
-    from{background-position: 50% 0%;}
-  	to{background-position: 50% 50%;}
+    from{background-position: 50% 100%;}
+  	to{background-position: 50% -100%;}
 }
 @-webkit-keyframes dayByDay
 {

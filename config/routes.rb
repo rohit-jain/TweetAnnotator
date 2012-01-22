@@ -8,6 +8,8 @@ HTT4::Application.routes.draw do
     match "/trend/:id" => "sessions#trend#id"
     match "/pt(/:id)", :to => 'sessions#putToken#id'
     match "/save_tweet" => "save_tweet#create"
+    match "/play" => "sessions#play"
+    #match "/filter" => "sessions#filter"
   #  match '/user_info', :to => 'sessions#user_info'  
   # The priority is based upon order of creation:
   # first created -> highest priority.

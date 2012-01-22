@@ -15,8 +15,8 @@
 			backgroundImage.src="../../assets/space.jpg";
       var collidesound = new Audio("../../assets/explodemini.ogg");
             
-            var asteroidImg = new Image();
-            asteroidImg.src="../../assets/asteroid.png";
+      var asteroidImg = new Image();
+      asteroidImg.src="../../assets/asteroid.png";      
             
 			var shootingObject = new Image();
 			shootingObject.src="../../assets/starship.png"
@@ -82,8 +82,6 @@
 
 			function clearColor() {
 				ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-				//Filling the Canvas
-				//twt.clearRect(0,0,twt.canvas.width,twt.canvas.height);
 			}
 
 			function hitToken(event) {
@@ -154,11 +152,8 @@
 
 			function drawScene() {
 				draw();
-				//ctx.drawImage(backgroundImage, 0, 0, 1920, 1024, 0, 0, ctx.canvas.width, ctx.canvas.height);
-				ctx.globalAlpha = 1;
-				
-				ctx.save();			
-				
+				ctx.globalAlpha = 1;				
+				ctx.save();							
 	      ctx.translate(ctx.canvas.width/2- 23, ctx.canvas.height-80);
 				// rotate 45 degrees clockwise
 	  		ctx.rotate(rotDir*Math.PI / 10);
@@ -356,23 +351,22 @@
 				
 				twt.font = "15pt Calibri";
 				twt.fillStyle = "Black";
-				var text = wrapText(twt,tweetInCloud[curTwInd].tweetTxt, tX-20, tY+20, ctx.canvas.width-50, 30);
+				var text = wrapText(twt,tweetInCloud[curTwInd].tweetTxt, tX-20, tY+20, 475, 30);
 				
 				ctx.fillStyle = "White";
 				ctx.font = "10pt Calibri"	;			
 				ctx.fillText(dT1, t1X + cloudShiftX1, t1Y + cloudShiftY1);
-				var b=91*astInd
-				ctx.drawImage(asteroidImg, 0, b, 109, 91, t1X + cloudShiftX1, t1Y + cloudShiftY1, 30, 28);
-				ctx.fillText(dT2, t2X + cloudShiftX2, t2Y + cloudShiftY2);
-				ctx.drawImage(asteroidImg, 0, b, 109, 91, t2X + cloudShiftX2, t2Y + cloudShiftY2, 30, 28);
-				
+       var b=91*astInd
+       ctx.drawImage(asteroidImg, 0, b, 109, 91, t1X + cloudShiftX1, t1Y + cloudShiftY1, 30, 28);
+       ctx.fillText(dT2, t2X + cloudShiftX2, t2Y + cloudShiftY2);
+       ctx.drawImage(asteroidImg, 0, b, 109, 91, t2X + cloudShiftX2, t2Y + cloudShiftY2, 30, 28);
 				
 				cat.font = "15pt Calibri";    
 				cat.textAlign = "center";
 				cat.fillStyle = "Red";
 				var spam_txt = "SPAM -> " + String(dT1);
 				var notSpam_txt = "NOT SPAM -> "+ String(dT2);
-				console.log(spam_txt);
+				
 				cat.fillText(spam_txt, cat.canvas.width/2, cat.canvas.height/2);
 				
 				cat.fillStyle = "Green";
@@ -384,8 +378,8 @@
 				cloudShiftY2 += yinc2;
 				cloudShiftX2 += xinc2;
 				astInd+=1;
-				if(astInd==30)
-				astInd=0;
+        if(astInd==30)
+        astInd=0;
 
 				if((cloudShiftY1 >= ctx.canvas.height-100) || (cloudShiftX1 >= ctx.canvas.height-100)) {
 					cloudShiftY1 = 0;
@@ -446,6 +440,7 @@
 						//document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
 					}
 				}
+				console.log(tweetId);
 				xmlhttp.open("GET", "/pt?tweetId=" + String(tweetId) + "&cat=" + String(cat), true);
 			    xmlhttp.send();
 			}
@@ -510,13 +505,15 @@
 			}
 		</script>
 	</head>
-	<body onLoad=init()>
+	<body onLoad="init()">
 		<div id="container">
-			<canvas id="sky" width="500" height="500"></canvas>
 			<canvas id="tweet" width="500" height="100"></canvas>
+			<canvas id="sky" width="500" height="500"></canvas>
 			<canvas id="category" width="500" height="100"></canvas>
 		</div>
-
+		<div id="display">
+			<canvas id="score"></canvas>
+		</div>
 		<div id="txtHint">
 		<!-- Content -->
 		</div>

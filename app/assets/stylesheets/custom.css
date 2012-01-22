@@ -1,80 +1,184 @@
+@-moz-keyframes dayByDay
+{
+    from{background-position: 50% 100%;}
+  	to{background-position: 50% -100%;}
+}
+@-webkit-keyframes dayByDay
+{
+    from{background-position: 50% 100%;}
+    to{background-position: 50% -100%;}
+}
 .container {
-  width: 1024px;
+	position: relative;
+	display: block;
 }
-
 body {
-  background: #cff;
+	float: left;
+	overflow: hidden;
+	margin: 0px;
+	background-color: #000;
+	background-image: url(../../assets/universe.png);
+	background-position: 0px;
+	background-repeat: repeat;
+	-moz-animation: dayByDay 30s linear 0s infinite;
+	-webkit-animation: dayByDay 30s linear 0s infinite;
+}
+div#simpleModal {
+	position: absolute;
+	top: 40px;
+	width: 560px;
+	left: 170px;
+	border: solid 1px #BBB;
+	padding: 20px;
+	background: white;
+	-webkit-box-shadow: 0px 3px 6px rgba(0,0,0,0.25);
+	opacity: 0.0;
+	-webkit-transition: opacity 0.0s ease-out;
+	z-index: 0;
+}
+div#simpleModal.show {
+	opacity: 1.0;
+	z-index: 100;
+	-webkit-transition-duration: 0.25s;
+}
+h3 {
+	font-size: 24px;
+	line-height: 1;
+	margin: 3px 0 9px;
+}
+h1, h2, h3 {
+	letter-spacing: -1px;
+}
+h1, h2, h3, h4, h5, h6 {
+	color: #333;
+	font-weight: bold;
+}
+p {
+	line-height: 18px;
+	margin: 0 0 18px;
+}
+.button {
+	background: #222 url(../../assets/overlay-button.png) repeat-x 0 0;
+	display: inline-block;
+	padding: 5px 15px 6px;
+	color: white !important;
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 1;
+	text-decoration: none;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+	position: relative;
+	cursor: pointer;
+	overflow: visible;
+	width: auto;
+}
+.green.button {
+	background-color: #91BD09;
 }
 
-
+.blue.button {
+	background-color: #2daebf;
+}
+.black.button {
+	font-size: 14px;
+	padding: 8px 14px 9px;
+}
+.super.button {
+	background-image: url(../../assets/super-button-overlay.png);
+	font-size: 18px;
+	padding: 0;
+	border: 1px solid rgba(0, 0, 0, .25);
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+}
+div.modal a.button {
+	float: right;
+	overflow: hidden;
+}
+.super.button span {
+	display: block;
+	padding: 5px 12px 4px;
+	-webkit-border-radius: 14px;
+	-moz-border-radius: 14px;
+	border-top: 1px solid rgba(255, 255, 255, .2);
+	line-height: 1;
+}
 header {
-  padding-top: 20px;
+	padding-top: 20px;
+	width: 850px;
+	margin-left: 10px;
 }
-
 header img {
-  background: #fff;
+	background: #fff;
 }
 /* Navigation */
 
 nav {
-  float: right;
+	float: right;
 }
-
- nav {
-  background-color: white;
-  padding: 0 0.7em;
-  white-space: nowrap;
+nav {
+	background-color: transparent;
+	padding: 0 0.7em;
+	white-space: nowrap;
 }
-
 nav ul {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
-
 nav ul li {
-  list-style-type: none;
-  display: inline-block;
-  padding: 0.2em 0;
+	list-style-type: none;
+	display: inline-block;
+	padding: 0.2em 0;
 }
-
 nav ul li a {
-  padding: 0 5px;
-  font-weight: bold;
+	padding: 0 5px;
+	font-weight: bold;
 }
-
 nav ul li a:visited {
-  color: #09c;
+	color: #09c;
 }
-
 nav ul li a:hover {
-  text-decoration: underline;
+	text-decoration: underline;
 }
-
 section {
-  margin-top: 1em;
-  font-size: 120%;
-  padding: 20px;
-  background: #fff;
-}
-
+	float: left;
+	position: relative;
+	margin-top: 1em;
+	margin-left:0.8em;
+	font-size: 120%;
+	padding: 20px;
+	width: 800px;
+	background: #FFFFFF;
+	border-style: outset;
+	border-top-left-radius: 30px;
+	border-bottom-left-radius: 30px;
+	border-top-right-radius: 30px;
+	border-bottom-right-radius: 30px;
+	}
 section h1 {
-  font-size: 200%;
+	font-size: 200%;
 }
-
 /* Links */
 
 a {
-  color: #09c;
-  text-decoration: none;
+	color: #09c;
+	text-decoration: none;
 }
-
 a:hover {
-  color: #069;
-  text-decoration: underline;
+	color: #069;
+	text-decoration: none;
 }
-
 a:visited {
-  color: #069;
+	color: #069;
 }
-
-
+.transparent {
+	background: transparent;	
+}
+.white{
+	background: #fff;
+}

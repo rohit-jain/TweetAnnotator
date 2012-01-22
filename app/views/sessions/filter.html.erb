@@ -10,20 +10,18 @@
   <a href="/play" id="showSimpleModal" class="super green button">
 		<span>Play</span>
 	</a>
-	<!--
 	<br /><br />
-  <a href="/filter" id="showSimpleModal" class="super green button">
-		<span>Filter</span>
+  <a href="" id="showSimpleModal" class="super green button">
+		<span>Filtered</span>
 	</a>
-	-->
 	<br /><br />
   <% client.trends().each do |key| %>
   	<% if /^\#/ =~key %>
-  	<a href="/trend/<%= key[1..-1] %>" id="showSimpleModal" class="super blue button">
+  	<a href="/trend/#{key[1..-1]}" id="showSimpleModal" class="super blue button">
 			<span><%= key %></span>
 		</a>
   	<% else %>
-  	<a href="/trend/<%= key %>" id="showSimpleModal" class="super blue button">
+  	<a href="/trend/#{key}" id="showSimpleModal" class="super blue button">
 			<span><%= key %></span>
 		</a>
   	<%end%>
